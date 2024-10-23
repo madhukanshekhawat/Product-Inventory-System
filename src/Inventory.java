@@ -59,24 +59,24 @@ public class Inventory {
         });
     }
 
-    public int forecastStock(int productId, int weeks) throws ForecastiongException {
+    public int forecastStock(int productId, int weeks) throws ForecastingException, ForecastingException {
 
         // check if input is valid
         if(weeks <=0){
-            throw new ForecastiongException("Weeks must be grater then zero for forecasting");
+            throw new ForecastingException("Weeks must be grater then zero for forecasting");
         }
 
         //find the product by id
         Optional<Product> productOpt = findProductById(productId);
 
         if(productOpt.isEmpty()){
-            throw new ForecastiongException("Product with ID"+ productId + "not found");
+            throw new ForecastingException("Product with ID"+ productId + "not found");
         }
 
         Product product = productOpt.get();
 
         if(product.getSales() == 0){
-            throw new ForecastiongException("Insufficient sales data for product Id" + productId + ". ");
+            throw new ForecastingException("Insufficient sales data for product Id" + productId + ". ");
 
         }
 
